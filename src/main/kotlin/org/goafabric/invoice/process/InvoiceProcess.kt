@@ -1,11 +1,12 @@
-/*
 package org.goafabric.invoice.process
 
 import jakarta.enterprise.context.ApplicationScoped
+import org.goafabric.invoice.process.steps.AuthorizationStep
+import org.goafabric.invoice.process.steps.EpisodeStep
+import org.goafabric.invoice.process.steps.InvoiceStep
 import org.goafabric.personservice.extensions.UserContext
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import java.util.concurrent.locks.Lock
 
 @ApplicationScoped
 class InvoiceProcess(authorizationStep: AuthorizationStep, invoiceStep: InvoiceStep, episodeStep: EpisodeStep) {
@@ -23,42 +24,31 @@ class InvoiceProcess(authorizationStep: AuthorizationStep, invoiceStep: InvoiceS
         executor = Executors.newVirtualThreadPerTaskExecutor()
     }
 
-    fun run(): java.util.concurrent.Future<kotlin.Boolean?> {
-        val userContextMap: Unit */
-/* TODO: class org.jetbrains.kotlin.nj2k.types.JKJavaNullPrimitiveType *//*
-? =
-            UserContext.adapterHeaderMap
-        return executor.submit<kotlin.Boolean?>(java.util.concurrent.Callable {
+    fun run(): java.util.concurrent.Future<kotlin.Boolean> {
+        val userContextMap = UserContext.adapterHeaderMap
+        return executor.submit<Boolean> {
             try {
-                return innerLoop(userContextMap)
+                return@submit innerLoop(userContextMap)
             } catch (e: java.lang.Exception) {
                 //Todo this is just a mitigation of lost exceptions in threads, they are still only logged but not handled by main exception handler - @CircuitBreaker inside the submit block seem to work though
                 log.error(e.message, e)
                 throw e
             }
-        })
+        }
     }
 
-    @kotlin.Throws(java.lang.InterruptedException::class)
-    private fun innerLoop(userContextMap: kotlin.collections.MutableMap<kotlin.String?, kotlin.String?>?): kotlin.Boolean {
+    private fun innerLoop(userContextMap: Map<String, String>): Boolean {
         UserContext.setContext(userContextMap)
-        log.info("##tenantid inside thread {} ", UserContext.getTenantId())
-        //if (true) { throw new IllegalStateException("yo baby"); }
-        var lock: Lock? = null
+        log.info("##tenantid inside thread {} ", UserContext.tenantId)
+        var lock: org.goafabric.invoice.process.adapter.authorization.Lock? = null
         try {
             lock = authorizationStep.acquireLock()
             episodeStep.retrieveRecords("Burns")
-            val invoice: Unit */
-/* TODO: class org.jetbrains.kotlin.nj2k.types.JKJavaNullPrimitiveType *//*
-? =
-                invoiceStep.create()
+            val invoice = invoiceStep.create()
             invoiceStep.check(invoice)
-            val encryptedInvoice: Unit */
-/* TODO: class org.jetbrains.kotlin.nj2k.types.JKJavaNullPrimitiveType *//*
-? =
-                invoiceStep.encrypt(invoice)
+            val encryptedInvoice = invoiceStep.encrypt(invoice)
             invoiceStep.send(encryptedInvoice)
-            invoiceStep.store(encryptedInvoice)
+            //invoiceStep.store(encryptedInvoice)
         } finally {
             authorizationStep.releaseLock(lock)
             log.info("finished ...")
@@ -69,7 +59,7 @@ class InvoiceProcess(authorizationStep: AuthorizationStep, invoiceStep: InvoiceS
 
     private fun doSleep() {
         log.info("sleeping")
-        Thread.sleep(1000)
+        java.lang.Thread.sleep(1000)
     }
 
     @jakarta.annotation.PreDestroy
@@ -77,4 +67,3 @@ class InvoiceProcess(authorizationStep: AuthorizationStep, invoiceStep: InvoiceS
         executor.shutdown()
     }
 }
-*/

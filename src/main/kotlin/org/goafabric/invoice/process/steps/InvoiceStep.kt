@@ -17,7 +17,7 @@ class InvoiceStep(
     private val log: Logger = LoggerFactory.getLogger(this.javaClass)
 
 
-    fun create(): Invoice? {
+    fun create(): Invoice {
         val episodeDetails = episodeDetailsRepository.findAll("1")
 
         log.info("logging adt")

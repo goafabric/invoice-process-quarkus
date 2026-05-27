@@ -38,6 +38,14 @@ object UserContext {
         )
     }
 
+    fun setContext(tenantHeaderMap: Map<String, String>) {
+        CONTEXT.set(
+            UserContextRecord(
+            tenantHeaderMap["X-TenantId"]!!, tenantHeaderMap["X-OrganizationId"]!!,
+            tenantHeaderMap["X-Auth-Request-Preferred-Username"]!!,
+            ))
+    }
+
     fun removeContext() {
         CONTEXT.remove()
     }
