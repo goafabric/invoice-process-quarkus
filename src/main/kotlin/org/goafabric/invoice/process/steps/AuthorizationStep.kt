@@ -1,6 +1,7 @@
 package org.goafabric.invoice.process.steps
 
 import jakarta.enterprise.context.ApplicationScoped
+import org.eclipse.microprofile.rest.client.inject.RestClient
 import org.goafabric.invoice.process.adapter.authorization.Lock
 import org.goafabric.invoice.process.adapter.authorization.LockAdapter
 import org.goafabric.personservice.extensions.UserContext
@@ -8,7 +9,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 @ApplicationScoped
-class AuthorizationStep(private val lockAdapter: LockAdapter) {
+class AuthorizationStep(
+    @param:RestClient private val lockAdapter: LockAdapter) {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass)
 
     fun acquireLock(): Lock {

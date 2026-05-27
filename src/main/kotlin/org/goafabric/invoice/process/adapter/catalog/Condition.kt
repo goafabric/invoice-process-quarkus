@@ -1,6 +1,5 @@
 package org.goafabric.invoice.process.adapter.catalog
 
-@JvmRecord
 data class Condition(
     val id: String?,
     val version: Long?,

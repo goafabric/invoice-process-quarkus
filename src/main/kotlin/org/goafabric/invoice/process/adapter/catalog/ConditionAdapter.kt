@@ -1,7 +1,11 @@
-package org.goafabric.invoice.process.adapter.catalog;
+package org.goafabric.invoice.process.adapter.catalog
 
-import jakarta.ws.rs.QueryParam;
+import jakarta.enterprise.context.ApplicationScoped
+import jakarta.ws.rs.QueryParam
+import org.eclipse.microprofile.rest.client.inject.RegisterRestClient
 
-public interface ConditionAdapter {
-    Condition findByCode(@QueryParam("code") String code);
+@ApplicationScoped
+@RegisterRestClient
+interface ConditionAdapter {
+    fun findByCode(@QueryParam("code") code: String?): Condition?
 }

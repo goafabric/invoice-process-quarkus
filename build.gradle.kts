@@ -160,3 +160,7 @@ tasks.matching { it.name == "checkSnapshotDependencies" }.configureEach {
 	enabled = false
 }
 
+val compileKotlin: KotlinCompile by tasks
+compileKotlin.compilerOptions {
+    freeCompilerArgs.set(listOf("-Xannotation-default-target=param-property"))
+}
