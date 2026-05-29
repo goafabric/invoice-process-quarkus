@@ -66,6 +66,7 @@ dependencies {
 	//adapter
 	implementation("io.quarkus:quarkus-resteasy-client-jackson")
 	implementation("io.quarkus:quarkus-smallrye-fault-tolerance")
+	implementation("io.quarkus:quarkus-smallrye-context-propagation")
 
 	//jib
 	implementation("io.quarkus:quarkus-container-image-jib")

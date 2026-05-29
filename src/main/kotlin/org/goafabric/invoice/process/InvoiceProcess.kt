@@ -4,23 +4,21 @@ import io.quarkus.runtime.StartupEvent
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.event.Observes
 import org.eclipse.microprofile.config.inject.ConfigProperty
+import org.eclipse.microprofile.context.ManagedExecutor
 import org.goafabric.invoice.controller.extensions.UserContext
 import org.goafabric.invoice.process.steps.AuthorizationStep
 import org.goafabric.invoice.process.steps.EpisodeStep
 import org.goafabric.invoice.process.steps.InvoiceStep
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
 
 @ApplicationScoped
 class InvoiceProcess(
                      private val authorizationStep: AuthorizationStep,
                      private val invoiceStep: InvoiceStep,
                      private val episodeStep: EpisodeStep,
-                     @param:ConfigProperty(name = "process.autostart") private val processAutoStart: Boolean
+                     @param:ConfigProperty(name = "process.autostart") private val processAutoStart: Boolean,
+                     private val executor: ManagedExecutor
 ) {
     private val log: org.slf4j.Logger = org.slf4j.LoggerFactory.getLogger(this.javaClass)
-
-    private val executor: ExecutorService = Executors.newVirtualThreadPerTaskExecutor()
 
     fun onStart(@Observes ev: StartupEvent) {
         run()
@@ -66,6 +64,6 @@ class InvoiceProcess(
 
     @jakarta.annotation.PreDestroy
     private fun shutdown() {
-        executor.shutdown()
+        // ManagedExecutor lifecycle is managed by the container
     }
 }
