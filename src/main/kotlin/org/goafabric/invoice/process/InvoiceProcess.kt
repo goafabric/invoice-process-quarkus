@@ -47,7 +47,7 @@ class InvoiceProcess(
         log.info("##tenantid inside thread {} ", UserContext.tenantId)
         var lock: org.goafabric.invoice.process.adapter.authorization.Lock? = null
         try {
-            lock = authorizationStep.acquireLock()
+           // lock = authorizationStep.acquireLock()
             episodeStep.retrieveRecords("Burns")
             val invoice = invoiceStep.create()
             invoiceStep.check(invoice)

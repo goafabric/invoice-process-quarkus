@@ -18,7 +18,7 @@ interface PatientAdapter {
     fun findPatientNamesByFamilyName(@QueryParam("search") search: String): MutableList<PatientNamesOnly>
 
     @GET
-    @Path("getById")
+    @Path("getById/{id}")
     fun getById(@PathParam("id") id: String): Patient
 
     @POST
