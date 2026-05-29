@@ -1,4 +1,4 @@
-package org.goafabric.personservice
+package org.goafabric.invoice
 
 import io.quarkus.runtime.Quarkus
 import io.quarkus.runtime.annotations.QuarkusMain
