@@ -22,7 +22,7 @@ class ProcessController(private val invoiceProcess: InvoiceProcess) {
     @Path("/process")
     fun loop(): kotlin.String {
         for (i in 0..9) {
-            invoiceProcess.run().get()
+            invoiceProcess.run()?.get()
         }
         return "launched"
     }

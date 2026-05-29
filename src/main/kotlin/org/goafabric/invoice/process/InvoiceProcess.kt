@@ -24,8 +24,10 @@ class InvoiceProcess(
         run()
     }
 
-    fun run(): java.util.concurrent.Future<kotlin.Boolean> {
+    fun run(): java.util.concurrent.Future<kotlin.Boolean>? {
         val userContextMap = UserContext.adapterHeaderMap
+        innerLoop(userContextMap)
+        /*
         return executor.submit<Boolean> {
             try {
                 return@submit innerLoop(userContextMap)
@@ -35,6 +37,9 @@ class InvoiceProcess(
                 throw e
             }
         }
+
+         */
+        return null
     }
 
     private fun innerLoop(userContextMap: Map<String, String>): Boolean {
