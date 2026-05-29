@@ -4,7 +4,7 @@ import io.quarkus.runtime.StartupEvent
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.event.Observes
 import org.eclipse.microprofile.config.inject.ConfigProperty
-import org.goafabric.invoice.process.extensions.UserContext
+import org.goafabric.invoice.controller.extensions.UserContext
 import org.goafabric.invoice.process.steps.AuthorizationStep
 import org.goafabric.invoice.process.steps.EpisodeStep
 import org.goafabric.invoice.process.steps.InvoiceStep

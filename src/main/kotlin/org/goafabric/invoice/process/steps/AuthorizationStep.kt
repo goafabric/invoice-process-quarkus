@@ -2,9 +2,9 @@ package org.goafabric.invoice.process.steps
 
 import jakarta.enterprise.context.ApplicationScoped
 import org.eclipse.microprofile.rest.client.inject.RestClient
+import org.goafabric.invoice.controller.extensions.UserContext
 import org.goafabric.invoice.process.adapter.authorization.Lock
 import org.goafabric.invoice.process.adapter.authorization.LockAdapter
-import org.goafabric.invoice.process.extensions.UserContext
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 

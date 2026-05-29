@@ -1,4 +1,4 @@
-package org.goafabric.invoice.process.extensions
+package org.goafabric.invoice.controller.extensions
 
 import io.opentelemetry.api.trace.Span
 import io.opentelemetry.context.Context

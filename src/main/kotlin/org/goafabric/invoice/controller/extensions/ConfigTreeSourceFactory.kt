@@ -1,4 +1,4 @@
-package org.goafabric.invoice.process.extensions
+package org.goafabric.invoice.controller.extensions
 
 import io.quarkus.runtime.annotations.StaticInitSafe
 import io.smallrye.config.ConfigSourceContext

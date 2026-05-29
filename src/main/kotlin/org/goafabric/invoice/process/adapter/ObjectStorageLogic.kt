@@ -7,7 +7,7 @@ import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.inject.Produces
 import jakarta.transaction.Transactional
 import org.eclipse.microprofile.config.inject.ConfigProperty
-import org.goafabric.invoice.process.extensions.UserContext
+import org.goafabric.invoice.controller.extensions.UserContext
 import java.io.Closeable
 import java.io.InputStream
 
