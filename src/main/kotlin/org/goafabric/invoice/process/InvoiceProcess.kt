@@ -1,6 +1,9 @@
 package org.goafabric.invoice.process
 
+import io.quarkus.runtime.StartupEvent
 import jakarta.enterprise.context.ApplicationScoped
+import jakarta.enterprise.event.Observes
+import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.goafabric.invoice.process.extensions.UserContext
 import org.goafabric.invoice.process.steps.AuthorizationStep
 import org.goafabric.invoice.process.steps.EpisodeStep
@@ -9,13 +12,19 @@ import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 @ApplicationScoped
-class InvoiceProcess(private val authorizationStep: AuthorizationStep,
+class InvoiceProcess(
+                     private val authorizationStep: AuthorizationStep,
                      private val invoiceStep: InvoiceStep,
-                     private val episodeStep: EpisodeStep
+                     private val episodeStep: EpisodeStep,
+                     @param:ConfigProperty(name = "process.autostart") private val processAutoStart: Boolean
 ) {
     private val log: org.slf4j.Logger = org.slf4j.LoggerFactory.getLogger(this.javaClass)
 
     private val executor: ExecutorService = Executors.newVirtualThreadPerTaskExecutor()
+
+    fun onStart(@Observes ev: StartupEvent) {
+        run()
+    }
 
     fun run(): java.util.concurrent.Future<kotlin.Boolean> {
         val userContextMap = UserContext.adapterHeaderMap

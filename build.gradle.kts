@@ -63,11 +63,6 @@ dependencies {
 	implementation("io.quarkus:quarkus-flyway")
 	implementation("org.flywaydb:flyway-database-postgresql")
 
-	//jakarta data
-	implementation("io.quarkus:quarkus-hibernate-panache-next")
-	implementation("jakarta.data:jakarta.data-api")
-	kapt("org.hibernate.orm:hibernate-processor")
-
 	//adapter
 	implementation("io.quarkus:quarkus-resteasy-client-jackson")
 	implementation("io.quarkus:quarkus-smallrye-fault-tolerance")
@@ -158,9 +153,4 @@ sonarqube {
 
 tasks.matching { it.name == "checkSnapshotDependencies" }.configureEach {
 	enabled = false
-}
-
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.compilerOptions {
-    freeCompilerArgs.set(listOf("-Xannotation-default-target=param-property"))
 }

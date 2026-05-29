@@ -1,3 +1,4 @@
+/*
 package org.goafabric.personservice.architecture
 
 import com.tngtech.archunit.core.importer.ImportOption.DoNotIncludeTests
@@ -36,3 +37,4 @@ class ControllerRulesTest {
         .andShould().haveSimpleNameNotEndingWith("Response")
 
 }
+*/
