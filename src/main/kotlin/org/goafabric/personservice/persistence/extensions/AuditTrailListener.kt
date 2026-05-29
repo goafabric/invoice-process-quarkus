@@ -6,7 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.inject.spi.CDI
 import jakarta.persistence.*
 import jakarta.transaction.Transactional
-import org.goafabric.personservice.extensions.UserContext
+import org.goafabric.invoice.process.extensions.UserContext
 import org.slf4j.LoggerFactory
 import java.util.*
 import kotlin.reflect.KClass

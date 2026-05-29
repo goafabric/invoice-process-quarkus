@@ -1,4 +1,4 @@
-package org.goafabric.personservice.extensions
+package org.goafabric.invoice.process.extensions
 
 import jakarta.ws.rs.core.Response
 import jakarta.ws.rs.ext.ExceptionMapper

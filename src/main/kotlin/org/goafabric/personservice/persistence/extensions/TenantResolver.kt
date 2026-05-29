@@ -9,7 +9,7 @@ import jakarta.enterprise.inject.spi.CDI
 import org.eclipse.microprofile.config.ConfigProvider
 import org.eclipse.microprofile.config.inject.ConfigProperty
 import org.flywaydb.core.Flyway
-import org.goafabric.personservice.extensions.UserContext.tenantId
+import org.goafabric.invoice.process.extensions.UserContext.tenantId
 import java.util.Map
 import java.util.function.Consumer
 

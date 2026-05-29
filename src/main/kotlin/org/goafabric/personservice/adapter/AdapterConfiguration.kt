@@ -2,7 +2,7 @@ package org.goafabric.personservice.adapter
 
 import jakarta.ws.rs.core.MultivaluedMap
 import org.eclipse.microprofile.rest.client.ext.ClientHeadersFactory
-import org.goafabric.personservice.extensions.UserContext
+import org.goafabric.invoice.process.extensions.UserContext
 import org.jboss.resteasy.specimpl.MultivaluedMapImpl
 
 class AdapterConfiguration : ClientHeadersFactory {

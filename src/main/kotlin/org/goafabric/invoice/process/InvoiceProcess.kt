@@ -1,28 +1,21 @@
 package org.goafabric.invoice.process
 
 import jakarta.enterprise.context.ApplicationScoped
+import org.goafabric.invoice.process.extensions.UserContext
 import org.goafabric.invoice.process.steps.AuthorizationStep
 import org.goafabric.invoice.process.steps.EpisodeStep
 import org.goafabric.invoice.process.steps.InvoiceStep
-import org.goafabric.personservice.extensions.UserContext
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
 @ApplicationScoped
-class InvoiceProcess(authorizationStep: AuthorizationStep, invoiceStep: InvoiceStep, episodeStep: EpisodeStep) {
+class InvoiceProcess(private val authorizationStep: AuthorizationStep,
+                     private val invoiceStep: InvoiceStep,
+                     private val episodeStep: EpisodeStep
+) {
     private val log: org.slf4j.Logger = org.slf4j.LoggerFactory.getLogger(this.javaClass)
 
-    private val authorizationStep: AuthorizationStep
-    private val invoiceStep: InvoiceStep
-    private val episodeStep: EpisodeStep
-    private val executor: ExecutorService
-
-    init {
-        this.authorizationStep = authorizationStep
-        this.invoiceStep = invoiceStep
-        this.episodeStep = episodeStep
-        executor = Executors.newVirtualThreadPerTaskExecutor()
-    }
+    private val executor: ExecutorService = Executors.newVirtualThreadPerTaskExecutor()
 
     fun run(): java.util.concurrent.Future<kotlin.Boolean> {
         val userContextMap = UserContext.adapterHeaderMap

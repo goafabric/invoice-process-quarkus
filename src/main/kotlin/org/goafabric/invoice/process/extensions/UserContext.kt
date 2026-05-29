@@ -1,4 +1,4 @@
-package org.goafabric.personservice.extensions
+package org.goafabric.invoice.process.extensions
 
 import com.fasterxml.jackson.databind.json.JsonMapper
 import com.fasterxml.jackson.module.kotlin.readValue

@@ -1,4 +1,4 @@
-package org.goafabric.personservice.logic
+package org.goafabric.invoice.process.adapter
 
 import com.azure.storage.blob.BlobClientBuilder
 import com.azure.storage.blob.BlobServiceClient
@@ -7,16 +7,16 @@ import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.inject.Produces
 import jakarta.transaction.Transactional
 import org.eclipse.microprofile.config.inject.ConfigProperty
-import org.goafabric.personservice.extensions.UserContext
+import org.goafabric.invoice.process.extensions.UserContext
 import java.io.Closeable
 import java.io.InputStream
-
 
 @ApplicationScoped
 @Transactional
 class ObjectStorageLogic(@param:ConfigProperty(name = "azure.storage.blob.container-name") val container: String,
                          val blobServiceClient: BlobServiceClient,
-                         val blobClientBuilder: BlobClientBuilder) {
+                         val blobClientBuilder: BlobClientBuilder
+) {
 
     fun getByKey(key: String): ObjectEntry {
         val blobClient = blobServiceClient.getBlobContainerClient(container)
@@ -89,4 +89,3 @@ class ObjectStorageLogic(@param:ConfigProperty(name = "azure.storage.blob.contai
         val data: InputStream,
     ) : Closeable by data
 }
-

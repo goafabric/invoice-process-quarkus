@@ -4,10 +4,10 @@ import io.quarkus.runtime.StartupEvent
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.event.Observes
 import org.eclipse.microprofile.config.inject.ConfigProperty
+import org.goafabric.invoice.process.extensions.UserContext
 import org.goafabric.personservice.controller.dto.Address
 import org.goafabric.personservice.controller.dto.Person
 import org.goafabric.personservice.controller.dto.PersonSearch
-import org.goafabric.personservice.extensions.UserContext
 import org.goafabric.personservice.logic.ObjectStorageLogic
 import org.goafabric.personservice.logic.PersonLogic
 import org.slf4j.Logger
