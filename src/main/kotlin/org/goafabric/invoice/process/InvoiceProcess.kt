@@ -1,5 +1,6 @@
 package org.goafabric.invoice.process
 
+import io.quarkus.runtime.Quarkus
 import io.quarkus.runtime.StartupEvent
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.enterprise.event.Observes
@@ -23,7 +24,7 @@ class InvoiceProcess(
     fun onStart(@Observes ev: StartupEvent) {
         if (processAutoStart) {
             run()
-            //Quarkus.asyncExit()
+            Quarkus.asyncExit()
         }
     }
 
