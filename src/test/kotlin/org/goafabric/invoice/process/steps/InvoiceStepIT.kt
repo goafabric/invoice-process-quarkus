@@ -15,6 +15,7 @@ class InvoiceStepIT {
         invoiceStep.check(invoice)
         val encryptedInvoice = invoiceStep.encrypt(invoice)
         invoiceStep.send(encryptedInvoice)
+        invoiceStep.store(encryptedInvoice)
 
     }
 }

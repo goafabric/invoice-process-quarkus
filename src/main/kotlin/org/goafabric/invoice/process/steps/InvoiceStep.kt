@@ -1,6 +1,9 @@
 package org.goafabric.invoice.process.steps
 
 import jakarta.enterprise.context.ApplicationScoped
+import jakarta.ws.rs.core.MediaType
+import org.eclipse.microprofile.config.inject.ConfigProperty
+import org.goafabric.invoice.process.adapter.ObjectStorageAdapter
 import org.goafabric.invoice.process.adapter.invoice.Invoice
 import org.goafabric.invoice.process.adapter.invoice.InvoiceMockAdapter
 import org.goafabric.invoice.process.persistence.ADTCreator
@@ -13,6 +16,10 @@ import java.util.*
 class InvoiceStep(
     private val episodeDetailsRepository: EpisodeDetailsRepository,
     private val invoiceAdapter: InvoiceMockAdapter,
+    @param:ConfigProperty(name = "quarkus.azure.storage.blob.connection-string")
+    private val azureBlobEnabled: Optional<String>,
+    private val objectStorageAdapter: ObjectStorageAdapter
+
 ) {
     private val log: Logger = LoggerFactory.getLogger(this.javaClass)
 
@@ -40,19 +47,18 @@ class InvoiceStep(
         invoiceAdapter.send(invoice)
     }
 
-    /*
     fun store(invoice: Invoice) {
-        if (s3Enabled) {
+        if (azureBlobEnabled.isPresent) {
             log.info("storing invoice")
-            val objectEntry: ObjectEntry = ObjectEntry(
-                "invoice.txt",
-                MediaType.TEXT_PLAIN_VALUE,
-                invoice.content.length() as Long,
-                invoice.content.getBytes(StandardCharsets.UTF_8)
+            val objectEntry: ObjectStorageAdapter.ObjectEntry =
+                ObjectStorageAdapter.ObjectEntry(
+                    key = "invoice.txt",
+                    sizeBytes = invoice.content.length.toLong(),
+                    contentType = MediaType.TEXT_PLAIN,
+                    data = invoice.content.byteInputStream(Charsets.UTF_8)
             )
-            s3Adapter.save(objectEntry)
+            objectStorageAdapter.put(objectEntry)
         }
     }
 
-     */
 }

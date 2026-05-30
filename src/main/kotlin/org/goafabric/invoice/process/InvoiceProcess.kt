@@ -57,7 +57,7 @@ class InvoiceProcess(
             invoiceStep.check(invoice)
             val encryptedInvoice = invoiceStep.encrypt(invoice)
             invoiceStep.send(encryptedInvoice)
-            //invoiceStep.store(encryptedInvoice)
+            invoiceStep.store(encryptedInvoice)
         } finally {
             //authorizationStep.releaseLock(lock)
             log.info("finished ...")

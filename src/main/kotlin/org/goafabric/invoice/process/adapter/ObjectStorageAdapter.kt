@@ -13,9 +13,9 @@ import java.io.InputStream
 
 @ApplicationScoped
 @Transactional
-class ObjectStorageLogic(@param:ConfigProperty(name = "azure.storage.blob.container-name") val container: String,
-                         val blobServiceClient: BlobServiceClient,
-                         val blobClientBuilder: BlobClientBuilder
+class ObjectStorageAdapter(@param:ConfigProperty(name = "azure.storage.blob.container-name") val container: String,
+                           val blobServiceClient: BlobServiceClient,
+                           val blobClientBuilder: BlobClientBuilder
 ) {
 
     fun getByKey(key: String): ObjectEntry {
