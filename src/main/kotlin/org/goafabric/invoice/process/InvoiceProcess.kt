@@ -16,12 +16,15 @@ class InvoiceProcess(
                      private val invoiceStep: InvoiceStep,
                      private val episodeStep: EpisodeStep,
                      @param:ConfigProperty(name = "process.autostart") private val processAutoStart: Boolean,
-                     private val executor: ManagedExecutor
+                     private val executor: ManagedExecutor,
 ) {
     private val log: org.slf4j.Logger = org.slf4j.LoggerFactory.getLogger(this.javaClass)
 
     fun onStart(@Observes ev: StartupEvent) {
-        run()
+        if (processAutoStart) {
+            run()
+            //Quarkus.asyncExit()
+        }
     }
 
     fun run(): java.util.concurrent.Future<kotlin.Boolean>? {
