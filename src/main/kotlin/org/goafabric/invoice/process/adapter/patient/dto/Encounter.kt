@@ -7,7 +7,7 @@ data class Encounter(
     val version: Long?,
 
     val patientId: String,
-    val practitionerId: String,
+    val practitionerId: String?,
     val encounterDate: LocalDate,
     val encounterName: String,
     val medicalRecords: MutableList<MedicalRecord>

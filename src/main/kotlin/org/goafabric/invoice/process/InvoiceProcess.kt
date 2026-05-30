@@ -55,7 +55,7 @@ class InvoiceProcess(
             invoiceStep.send(encryptedInvoice)
             //invoiceStep.store(encryptedInvoice)
         } finally {
-            authorizationStep.releaseLock(lock)
+            //authorizationStep.releaseLock(lock)
             log.info("finished ...")
         }
         doSleep()

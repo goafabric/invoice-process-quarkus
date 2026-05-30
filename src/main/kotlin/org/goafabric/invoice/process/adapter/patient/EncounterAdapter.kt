@@ -16,7 +16,7 @@ interface EncounterAdapter {
     @GET
     @Path("findByPatientIdAndDisplay")
     fun findByPatientIdAndDisplay(
-        @QueryParam("patientId") patientId: String?,
-        @QueryParam("display") display: String?
-    ): MutableList<Encounter>
+        @QueryParam("patientId") patientId: String,
+        @QueryParam("display") display: String
+    ): List<Encounter>
 }
