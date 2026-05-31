@@ -7,7 +7,7 @@ import jakarta.ws.rs.core.MediaType
 import org.goafabric.invoice.process.InvoiceProcess
 
 
-@Path("/process")
+@Path("/processes")
 @Produces(MediaType.APPLICATION_JSON)
 class ProcessController(private val invoiceProcess: InvoiceProcess) {
 
