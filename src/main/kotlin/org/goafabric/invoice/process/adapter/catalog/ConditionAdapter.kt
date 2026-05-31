@@ -1,6 +1,5 @@
 package org.goafabric.invoice.process.adapter.catalog
 
-import jakarta.enterprise.context.ApplicationScoped
 import jakarta.ws.rs.GET
 import jakarta.ws.rs.Path
 import jakarta.ws.rs.QueryParam
@@ -15,7 +14,6 @@ import org.goafabric.invoice.process.adapter.AdapterConfiguration
 @Timeout
 @CircuitBreaker
 @RegisterClientHeaders(AdapterConfiguration::class)
-@ApplicationScoped
 interface ConditionAdapter {
     @GET
     @Path("findByCode")
