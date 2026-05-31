@@ -20,6 +20,7 @@ services:
       interval: 1s
       timeout: 5s
       retries: 5
+
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
@@ -30,6 +31,10 @@ services:
     container_name: ${_Values_root_name}-azurite
     ports:
       - "10000:10000"
+    environment:
+      configuration.blobEnabled: "true"
+      configuration.queueEnabled: "false"
+      configuration.tableEnabled: "false"
     networks:
       - ${_Values_root_name}-net
 
