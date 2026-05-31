@@ -1,0 +1,64 @@
+services:
+  postgres:
+    container_name: ${_Values_root_name}-postgres
+    image: postgres:17.3
+    restart: 'no'
+    ports:
+      - 50810:5432
+    environment:
+      TZ: "Europe/Berlin"
+      POSTGRES_DB: "core"
+
+      #secrets
+      POSTGRES_USER: "core-service"
+      POSTGRES_PASSWORD: "core-service"
+
+    command: postgres -c 'shared_buffers=64MB' -c 'max_connections=30' -c 'shared_preload_libraries=pg_stat_statements'
+
+    healthcheck:
+      test: "sh -c pg_isready"
+      interval: 1s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - ${_Values_root_name}-net
+
+  nginx:
+    container_name: ${_Values_root_name}-nginx
+    image: nginx:1.28-alpine3.21
+    restart: 'no'
+    ports:
+      - 8080:80
+    networks:
+      - ${_Values_root_name}-net
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      core-service-application:
+        condition: service_started
+
+  core-fe:
+    container_name: ${_Values_root_name}-core-fe
+    image: goafabric/core-fe:3.3.2-SNAPSHOT
+    restart: 'no'
+    ports:
+      - 80
+    networks:
+      - ${_Values_root_name}-net
+
+volumes:
+    tmp:
+    applogs:
+    tmp_catalog:
+    applogs_catalog:
+    tmp_invoice:
+    applogs_invoice:
+    pgdata:
+    kcdata:
+    miniodata:
+
+networks:
+  core-service-net:
+    driver: bridge

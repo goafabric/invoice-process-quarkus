@@ -1,0 +1,45 @@
+services:
+  invoice-process-application:
+    container_name: invoice-process-application
+    image:  goafabric/invoice-process-quarkus:1.0.0-SNAPSHOT
+    restart: 'no'
+    command: "-Xmx32m"
+    ports:
+      - "50400:8080"
+
+    healthcheck:
+      test: "curl -f http://localhost:8080/actuator/health || exit 1"
+      disable: true #disabled for native images because of no curl
+      interval: 5s
+      timeout: 10s
+      retries: 5
+
+    volumes:
+      - tmp_invoice:/tmp
+      - applogs_invoice:/usr/share/logs
+    networks:
+      - ${_Values_root_name}-net
+    environment:
+      #application
+      TZ: Europe/Berlin
+      quarkus.http.port: "8080"
+      quarkus.http.io-threads: "20"
+
+      #tracing
+      quarkus.otel.exporter.otlp.traces.endpoint: "http://host.docker.internal:4317"
+      quarkus.application.name: "catalog-service"
+
+      #start
+      process.autostart: false
+
+      #adapter
+      adapter.coreservice.url: "http://core-service-application:50800"
+      adapter.catalogservice.url: "http://catalog-service-application:8080"
+
+      #azure
+      #%dev.quarkus.azure.storage.blob.connection-string=DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://localhost:10000/devstoreaccount1
+
+      #log levels
+      logging.level.root: "WARN"
+      logging.level.org.goafabric: "INFO"
+      logging.level.org.springframework: "INFO"
