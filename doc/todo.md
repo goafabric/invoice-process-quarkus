@@ -1,3 +1,3 @@
 - redis cache
 - releases of all services
-- catalog batch fix
+- applicationscoped conditionadapter
