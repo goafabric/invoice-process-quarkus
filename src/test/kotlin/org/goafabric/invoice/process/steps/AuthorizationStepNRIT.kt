@@ -5,12 +5,13 @@ import jakarta.inject.Inject
 import org.junit.jupiter.api.Test
 
 @QuarkusTest
-class EpisodeStepIT {
+class AuthorizationStepNRIT {
     @Inject
-    private lateinit var episodeStep: EpisodeStep
+    private lateinit var authorizationStep: AuthorizationStep
 
     @Test
     fun `episode step is created`() {
-        episodeStep.retrieveRecords("Burns")
+        val lock = authorizationStep.acquireLock()
+        authorizationStep.releaseLock(lock)
     }
 }

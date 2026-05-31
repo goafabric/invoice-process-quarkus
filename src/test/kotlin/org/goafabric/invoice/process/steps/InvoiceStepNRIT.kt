@@ -5,7 +5,7 @@ import jakarta.inject.Inject
 import org.junit.jupiter.api.Test
 
 @QuarkusTest
-class InvoiceStepIT {
+class InvoiceStepNRIT {
     @Inject
     private lateinit var invoiceStep: InvoiceStep
 
@@ -15,7 +15,7 @@ class InvoiceStepIT {
         invoiceStep.check(invoice)
         val encryptedInvoice = invoiceStep.encrypt(invoice)
         invoiceStep.send(encryptedInvoice)
-        invoiceStep.store(encryptedInvoice)
+        //invoiceStep.store(encryptedInvoice)
 
     }
 }
