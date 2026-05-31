@@ -33,7 +33,7 @@ services:
       process.autostart: false
 
       #adapter
-      adapter.coreservice.url: "http://core-service-application:50800"
+      adapter.coreservice.url: "http://core-service-application:8080"
       adapter.catalogservice.url: "http://catalog-service-application:8080"
 
       #azure

@@ -5,6 +5,7 @@ services:
     restart: 'no'
     ports:
       - "50600:8080"
+
     command: "-Xmx32m"
 
     healthcheck:

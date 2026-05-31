@@ -4,6 +4,8 @@ services:
     image:  goafabric/core-service-native:4.0.1
     restart: 'no'
     command: ["-Xmx${_Values_resources_requests_memory}"]
+    ports:
+      - "50800:8080"
 
     healthcheck:
       test: "curl -f http://localhost:8080/actuator/health || exit 1"
