@@ -1,0 +1,52 @@
+{
+  "openapi" : "3.1.0",
+  "paths" : {
+    "/process/process" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Loop",
+        "tags" : [ "Process Controller" ]
+      }
+    },
+    "/process/start" : {
+      "get" : {
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        },
+        "summary" : "Start",
+        "tags" : [ "Process Controller" ]
+      }
+    }
+  },
+  "info" : {
+    "title" : "person-service API",
+    "version" : "1.0.0-SNAPSHOT"
+  },
+  "servers" : [ {
+    "url" : "http://localhost:50400",
+    "description" : "Auto generated value"
+  }, {
+    "url" : "http://0.0.0.0:50400",
+    "description" : "Auto generated value"
+  } ]
+}
