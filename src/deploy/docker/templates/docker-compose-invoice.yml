@@ -36,8 +36,13 @@ services:
       adapter.coreservice.url: "http://core-service-application:8080"
       adapter.catalogservice.url: "http://catalog-service-application:8080"
 
-      #azure
-      #%dev.quarkus.azure.storage.blob.connection-string=DefaultEndpointsProtocol=http;AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;BlobEndpoint=http://localhost:10000/devstoreaccount1
+
+      #azure blob
+      azure.storage.blob.container-name: "invoice"
+      quarkus.azure.storage.blob.connection-string: DefaultEndpointsProtocol=http;AccountName=$${azure.storage.blob.account-name};AccountKey=$${azure.storage.blob.account-key};BlobEndpoint=http://azurite:10000/$${azure.storage.blob.account-name}
+
+      azure.storage.blob.account-name: devstoreaccount1
+      azure.storage.blob.account-key: Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
 
       #log levels
       logging.level.root: "WARN"
