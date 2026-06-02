@@ -43,7 +43,7 @@ class ObjectStorageAdapter(@param:ConfigProperty(name = "azure.storage.blob.cont
         val blobClient = blobServiceClient.getBlobContainerClient(container)
             .getBlobClient(getPath(objectEntry.key))
 
-        blobClient.upload(objectEntry.data, objectEntry.sizeBytes)
+        blobClient.upload(objectEntry.data, objectEntry.sizeBytes, true)
         blobClient.setHttpHeaders(BlobHttpHeaders().setContentType(objectEntry.contentType))
     }
 
