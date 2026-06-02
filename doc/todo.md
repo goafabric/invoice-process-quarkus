@@ -1,5 +1,2 @@
 - redis cache
-- releases of all services
-- applicationscoped conditionadapter
-- kubernetes
 - event dispatcher
