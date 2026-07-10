@@ -27,7 +27,7 @@ paths:
       - Process Controller
 info:
   title: person-service API
-  version: 1.0.0-SNAPSHOT
+  version: 1.0.1-SNAPSHOT
 servers:
 - url: http://localhost:50400
   description: Auto generated value

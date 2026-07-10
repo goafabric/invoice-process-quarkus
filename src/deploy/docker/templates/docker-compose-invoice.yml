@@ -26,20 +26,20 @@ services:
       quarkus.http.io-threads: "20"
 
       #tracing
-      quarkus.otel.exporter.otlp.traces.endpoint: "http://host.docker.internal:4317"
+      quarkus.otel.exporter.otlp.traces.endpoint: "http://${_Values_host_docker_internal}:4317"
       quarkus.application.name: "catalog-service"
 
       #start
       process.autostart: false
 
       #adapter
-      adapter.coreservice.url: "http://core-service-application:8080"
-      adapter.catalogservice.url: "http://catalog-service-application:8080"
+      adapter.coreservice.url: "http://${_Values_host_docker_internal}:50800"
+      adapter.catalogservice.url: "http://${_Values_host_docker_internal}:50600"
 
 
       #azure blob
       azure.storage.blob.container-name: "invoice"
-      quarkus.azure.storage.blob.connection-string: DefaultEndpointsProtocol=http;AccountName=$${azure.storage.blob.account-name};AccountKey=$${azure.storage.blob.account-key};BlobEndpoint=http://azurite:10000/$${azure.storage.blob.account-name}
+      quarkus.azure.storage.blob.connection-string: DefaultEndpointsProtocol=http;AccountName=$${azure.storage.blob.account-name};AccountKey=$${azure.storage.blob.account-key};BlobEndpoint=http://${_Values_host_docker_internal}:10000/$${azure.storage.blob.account-name}
 
       azure.storage.blob.account-name: devstoreaccount1
       azure.storage.blob.account-key: Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==

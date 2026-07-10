@@ -21,8 +21,8 @@ services:
       timeout: 5s
       retries: 5
 
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+#    volumes:
+#      - pgdata:/var/lib/postgresql/data
     networks:
       - ${_Values_root_name}-net
 

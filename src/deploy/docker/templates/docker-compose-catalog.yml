@@ -31,7 +31,7 @@ services:
       quarkus.application.name: "catalog-service"
 
       #persistence
-      quarkus.datasource.jdbc.url: "jdbc:postgresql://postgres:5432/core"
+      quarkus.datasource.jdbc.url: "jdbc:postgresql://${_Values_host_docker_internal}:50810/core"
       #spring.datasource.hikari.maximum-pool-size: "10"
       #spring.datasource.hikari.connection-timeout: "10000"
 
@@ -48,4 +48,4 @@ services:
 
     depends_on:
       postgres:
-        condition: service_healthy
+        condition: service_started
