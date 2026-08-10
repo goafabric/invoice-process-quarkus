@@ -62,8 +62,8 @@ services:
       - ${_Values_root_name}-net
 
 volumes:
-    tmp:
-    applogs:
+    tmp_core:
+    applogs_core:
     tmp_catalog:
     applogs_catalog:
     tmp_invoice:
