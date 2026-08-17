@@ -19,7 +19,7 @@ class ProcessController(private val invoiceProcess: InvoiceProcess) {
     }
 
     @GET
-    @Path("/process")
+    @Path("/loop")
     fun loop(): kotlin.String {
         for (i in 0..9) {
             invoiceProcess.run()?.get()
