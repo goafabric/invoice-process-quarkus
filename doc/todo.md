@@ -1,3 +1,2 @@
 - redis cache
 - event dispatcher
-- core service kafka, address field missing
