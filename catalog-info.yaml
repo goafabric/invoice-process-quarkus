@@ -1,0 +1,56 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: invoice-process-quarkus
+  description: |
+    A process for invoices
+    
+    [![ArgoCD Status](https://v2202402203466256255.megasrv.de/argocd/api/badge?name=invoice-process-application&revision=false)](https://v2202402203466256255.megasrv.de/argocd/applications/invoice-process-quarkus-application)
+    
+    [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
+    [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=coverage)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
+
+    [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
+    [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
+    [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
+  tags:
+    - process
+  annotations:
+    github.com/project-slug: goafabric/invoice-process-quarkus
+    github.com/actions: goafabric/invoice-process-quarkus
+    argocd/app-name: invoice-process-quarkus-application
+    backstage.io/adr-location: https://github.com/goafabric/backstage/tree/develop/catalog/adr/invoice-process
+  links:
+    - url: https://github.com/goafabric/invoice-process-quarkus
+      title: GitHub Repository
+
+spec:
+  type: service
+  lifecycle: production
+  owner: team-blue
+  
+  providesApis:
+    - invoice-api
+  dependsOn:
+    - component:core-service
+    - component:catalog-service
+    - resource:kafka
+  dependencyOf:
+    - component:api-gateway
+
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: invoice-api
+  description: OpenAPI definition for Core Service.
+  tags:
+    - openapi
+    - invoice-process-quarkus
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-blue
+  definition:
+    $text: doc/generated/openapi.json
