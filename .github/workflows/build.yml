@@ -20,14 +20,14 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
-          gradle-version: 9.5.1
+          gradle-version: 9.7.0
 
       - name: Test
         run: gradle build test
 
-#      - name: Sonar
-#        continue-on-error: true
-#        run: gradle sonar -Dsonar.plugins.downloadOnlyRequired=true -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=goafabric -Dsonar.token=${{ secrets.SONAR_USER_TOKEN }}
+      - name: Sonar
+        continue-on-error: true
+        run: gradle sonar -Dsonar.plugins.downloadOnlyRequired=true -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=goafabric -Dsonar.token=${{ secrets.SONAR_USER_TOKEN }}
 
   snapshot:
     runs-on: ubuntu-24.04-arm
@@ -50,7 +50,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
-          gradle-version: 9.5.1
+          gradle-version: 9.7.0
 
       - name: Container Images
         run: gradle dockerImageNative
@@ -78,7 +78,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v6
         with:
-          gradle-version: 9.5.1
+          gradle-version: 9.7.0
 
       - name: Setup git config
         run: |
