@@ -7,12 +7,12 @@ metadata:
     
     [![ArgoCD Status](https://v2202402203466256255.megasrv.de/argocd/api/badge?name=invoice-process-application&revision=false)](https://v2202402203466256255.megasrv.de/argocd/applications/invoice-process-quarkus-application)
     
-    [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
-    [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=coverage)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
+    [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=alert_status&token=e8b419c2b9a0b54a5d3c101346617f6239d20fce)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
+    [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=coverage&token=e8b419c2b9a0b54a5d3c101346617f6239d20fce)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
 
-    [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
-    [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
-    [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
+    [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=security_rating&token=e8b419c2b9a0b54a5d3c101346617f6239d20fce)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
+    [![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=reliability_rating&token=e8b419c2b9a0b54a5d3c101346617f6239d20fce)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
+    [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=org.goafabric%3Ainvoice-process-quarkus&metric=sqale_rating&token=e8b419c2b9a0b54a5d3c101346617f6239d20fce)](https://sonarcloud.io/summary/new_code?id=org.goafabric%3Ainvoice-process-quarkus)
   tags:
     - process
   annotations:
