@@ -40,7 +40,7 @@
   },
   "info" : {
     "title" : "person-service API",
-    "version" : "1.0.1-SNAPSHOT"
+    "version" : "1.0.2-SNAPSHOT"
   },
   "servers" : [ {
     "url" : "http://localhost:50400",
