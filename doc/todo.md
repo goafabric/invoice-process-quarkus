@@ -1,2 +1,3 @@
 - redis cache
 - event dispatcher
+- kafka in compose
