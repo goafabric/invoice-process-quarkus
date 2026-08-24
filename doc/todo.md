@@ -1,3 +1,4 @@
 - redis cache
 - event dispatcher
 - kafka in compose
+- kafka outbox pattern
