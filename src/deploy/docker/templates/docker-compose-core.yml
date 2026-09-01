@@ -1,7 +1,7 @@
 services:
   core-service-application:
     container_name: core-service-application
-    image:  goafabric/core-service-quarkus:1.0.1-SNAPSHOT
+    image:  goafabric/core-service-quarkus:1.0.1
     restart: 'no'
     command: ["-Xmx${_Values_resources_requests_memory}"]
     ports:
