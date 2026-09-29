@@ -1,5 +1,6 @@
 package org.goafabric.invoice.process.adapter.catalog
 
+import io.quarkus.cache.CacheResult
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.ws.rs.GET
 import jakarta.ws.rs.Path
@@ -8,6 +9,7 @@ import org.eclipse.microprofile.faulttolerance.CircuitBreaker
 import org.eclipse.microprofile.faulttolerance.Timeout
 import org.eclipse.microprofile.rest.client.annotation.RegisterClientHeaders
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient
+import org.goafabric.invoice.process.MyCacheConfiguration
 import org.goafabric.invoice.process.adapter.AdapterConfiguration
 
 @Path("/conditions")
@@ -16,6 +18,7 @@ import org.goafabric.invoice.process.adapter.AdapterConfiguration
 @CircuitBreaker
 @RegisterClientHeaders(AdapterConfiguration::class)
 @ApplicationScoped
+@CacheResult(cacheName = "conditionAdapter", keyGenerator = MyCacheConfiguration::class)
 interface ConditionAdapter {
     @GET
     @Path("findByCode")

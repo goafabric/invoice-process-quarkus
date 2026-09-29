@@ -56,6 +56,7 @@ dependencies {
 
 	//crosscutting
 	implementation("io.quarkus:quarkus-hibernate-validator")
+	implementation("io.quarkus:quarkus-cache")
 
 	//persistence
 	implementation("io.quarkus:quarkus-jdbc-postgresql")
