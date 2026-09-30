@@ -6,6 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped
 import org.goafabric.invoice.controller.extensions.UserContext
 import java.lang.reflect.Method
 
+//https://quarkus.io/guides/cache/#multiple-backends-simultaneously
 @ApplicationScoped
 class MyCacheConfiguration : CacheKeyGenerator {
     override fun generate(method: Method, vararg methodParams: Any): Any {
