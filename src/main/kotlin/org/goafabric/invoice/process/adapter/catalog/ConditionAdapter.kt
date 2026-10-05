@@ -18,9 +18,9 @@ import org.goafabric.invoice.process.adapter.AdapterConfiguration
 @CircuitBreaker
 @RegisterClientHeaders(AdapterConfiguration::class)
 @ApplicationScoped
-@CacheResult(cacheName = "conditionAdapter", keyGenerator = MyCacheConfiguration::class)
 interface ConditionAdapter {
     @GET
     @Path("findByCode")
+    @CacheResult(cacheName = "conditionAdapter", keyGenerator = MyCacheConfiguration::class)
     fun findByCode(@QueryParam("code") code: String?): Condition?
 }
