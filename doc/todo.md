@@ -1,3 +1,2 @@
 - event dispatcher
-- kafka in compose
 - redis cache https://quarkus.io/guides/cache/#prerequisites  https://quarkus.io/guides/cache-redis-reference/
