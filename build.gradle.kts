@@ -10,7 +10,7 @@ val dockerRegistry = "goafabric"
 plugins {
 	java
 	jacoco
-	id("io.quarkus") version "3.40.2"
+	id("io.quarkus") version "4.0.1"
 	id("net.researchgate.release") version "3.2.0"
 	id("org.sonarqube") version "7.6.0.18749"
 
@@ -38,8 +38,8 @@ dependencies {
 		testImplementation("org.mockito.kotlin:mockito-kotlin:6.4.0")
 	}
 
-	kapt(enforcedPlatform("io.quarkus:quarkus-bom:3.40.2"))
-	implementation(enforcedPlatform("io.quarkus:quarkus-bom:3.40.2"))
+	kapt(enforcedPlatform("io.quarkus:quarkus-bom:4.0.1"))
+	implementation(enforcedPlatform("io.quarkus:quarkus-bom:4.0.1"))
 }
 dependencies {
 	//web
@@ -57,11 +57,6 @@ dependencies {
 	//crosscutting
 	implementation("io.quarkus:quarkus-hibernate-validator")
 
-	//persistence
-	implementation("io.quarkus:quarkus-jdbc-postgresql")
-	implementation("io.quarkus:quarkus-jdbc-h2")
-	implementation("io.quarkus:quarkus-flyway")
-	implementation("org.flywaydb:flyway-database-postgresql")
 
 	//adapter
 	implementation("io.quarkus:quarkus-rest-client-jackson")
@@ -77,10 +72,10 @@ dependencies {
 
 	//kotlin
 	implementation("io.quarkus:quarkus-kotlin")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("tools.jackson.module:jackson-module-kotlin")
 	
 	//blob
-	implementation("io.quarkiverse.azureservices:quarkus-azure-storage-blob")
+	//implementation("io.quarkiverse.azureservices:quarkus-azure-storage-blob")
 	
 	//h2
 	runtimeOnly("com.h2database:h2")

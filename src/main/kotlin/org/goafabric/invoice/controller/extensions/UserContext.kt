@@ -1,8 +1,10 @@
 package org.goafabric.invoice.controller.extensions
 
-import com.fasterxml.jackson.databind.json.JsonMapper
-import com.fasterxml.jackson.module.kotlin.readValue
+import io.vertx.core.http.HttpServerRequest
 import jakarta.ws.rs.container.ContainerRequestContext
+import tools.jackson.databind.json.JsonMapper
+import tools.jackson.module.kotlin.jacksonMapperBuilder
+import tools.jackson.module.kotlin.readValue
 import java.util.*
 
 object UserContext {
@@ -16,7 +18,7 @@ object UserContext {
         }
     }
 
-    private val jsonMapper : JsonMapper = JsonMapper()
+    private val jsonMapper : JsonMapper = jacksonMapperBuilder().build()
 
     private val CONTEXT: ThreadLocal<UserContextRecord> =
         ThreadLocal.withInitial { UserContextRecord("0", "0", "anonymous") }
@@ -25,6 +27,13 @@ object UserContext {
         setContext(
             request.getHeaderString("X-TenantId"), request.getHeaderString("X-OrganizationId"),
             request.getHeaderString("X-Auth-Request-Preferred-Username"), request.getHeaderString("X-UserInfo")
+        )
+    }
+
+    fun setContext(request: HttpServerRequest) {
+        setContext(
+            request.getHeader("X-TenantId"), request.getHeader("X-OrganizationId"),
+            request.getHeader("X-Auth-Request-Preferred-Username"), request.getHeader("X-UserInfo")
         )
     }
 

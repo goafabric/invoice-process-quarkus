@@ -2,7 +2,9 @@ package org.goafabric.invoice.controller.extensions
 
 import io.opentelemetry.api.trace.Span
 import io.opentelemetry.context.Context
+import io.vertx.core.http.HttpServerRequest
 import jakarta.enterprise.context.ApplicationScoped
+import jakarta.inject.Inject
 import jakarta.ws.rs.container.ContainerRequestContext
 import jakarta.ws.rs.container.ContainerRequestFilter
 import jakarta.ws.rs.container.ContainerResponseContext
@@ -15,7 +17,9 @@ import java.io.IOException
 
 @Provider
 @ApplicationScoped
-class HttpInterceptor : ContainerRequestFilter, ContainerResponseFilter {
+class HttpInterceptor : ContainerRequestFilter, ContainerResponseFilter { //, ToolFilter {
+    private val log: Logger = LoggerFactory.getLogger("HttpInterceptor")
+
     @Throws(IOException::class)
     override fun filter(request: ContainerRequestContext) {
         UserContext.setContext(request)
@@ -32,7 +36,18 @@ class HttpInterceptor : ContainerRequestFilter, ContainerResponseFilter {
         MDC.remove("tenantId")
     }
 
-    private val log: Logger = LoggerFactory.getLogger("HttpInterceptor")
+    @Inject
+    lateinit var serverRequest: HttpServerRequest
+
+    /*
+    override fun test(tool: ToolInfo, connection: McpConnection): Boolean {
+        UserContext.setContext(serverRequest)
+        configureLogsAndTracing()
+        log.info("{} mcp call for user {} ", tool.name(), UserContext.userName)
+        return true
+    }
+
+     */
 
     private fun configureLogsAndTracing() {
         MDC.put("tenantId", UserContext.tenantId)

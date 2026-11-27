@@ -1,3 +1,4 @@
+/*
 package org.goafabric.invoice.process.adapter
 
 import com.azure.storage.blob.BlobClientBuilder
@@ -88,4 +89,4 @@ class ObjectStorageAdapter(@param:ConfigProperty(name = "azure.storage.blob.cont
         val contentType: String,
         val data: InputStream,
     ) : Closeable by data
-}
+}*/
